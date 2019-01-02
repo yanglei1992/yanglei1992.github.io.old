@@ -13,12 +13,14 @@ tag: mysql
 存储过程(Stored Procedure)：
 
 　　一组可编程的函数，是为了完成特定功能的SQL语句集，经编译创建并保存在数据库中，用户可通过指定存储过程的名字并给定参数(需要时)来调用执行。
-    
-　　优点：
 
-1. 将重复性很高的一些操作，封装到一个储存过程中，简化了对这些SQL的调用。
-2. 批量处理SQL，减少流量。
-3. 统一接口，确保数据安全。
+1. 创建与删除储存过程
+2. 调用储存过程
+3. 存储过程体
+4. 语句块标签
+5. 储存过程的参数
+6. 我的使用
+7. 参考资料
 
 ----------
 
@@ -27,11 +29,17 @@ tag: mysql
 
 
 
-- 删除存储过程：DROP PROCEDURE IF EXISTS proc_name
-- 创建存储过程：
+- 删除存储过程：
 
->     CREATE PROCEDURE sp_name ([proc_parameter[,...]])
->     [characteristic ...] routine_body
+
+>     DROP PROCEDURE IF EXISTS proc_name
+
+- 创建存储过程：以下是来自官方API的定义
+
+	
+> 
+>     CREATE PROCEDURE sp_name ([proc_parameter[,...]]) 
+>      [characteristic ...] routine_body
 >      
 >     proc_parameter:
 >     [ IN | OUT | INOUT ] param_name type
@@ -52,57 +60,20 @@ tag: mysql
     
 
 ## 2. 调用储存过程 ##
-    
 
-
->     call sp_name(参数)
 
 ## 3. 存储过程体 ##
 
-储存过程体包含了在过程调用时必须执行的语句：
-过程体格式：以begin开始，以end结束（可嵌套）
-
-> 	BEGIN
-> 	　　BEGIN
-> 	        statements; 
-> 	　　END
-> 	END
 
 ## 4. 语句块标签 ##
-
-标签的作用：
-
-1. 增强代码的可读性
-2. 在某些语句中（例如：leave和iterate语句），需要通道标签
-
-> 	语法：
-> 	[begin_label:] BEGIN
-> 	　　[statement_list]
-> 	END [end_label]
-> 
-> 	实例：
-> 	label1: BEGIN
-> 	　　label2: BEGIN
-> 	　　　　statements; 
-> 	　　END label2;
-> 	END label1
-
 
 
 ## 5. 储存过程的参数 ##
 
-储存过程可以有0个或者多个参数，用于存储过程的定义。
-储存过程有三种类型的参数：
-
-1. **IN**输入参数：表示调用储存过程传入值；
-2. **OUT**输出参数：表示调用储存过程的返回值（可以返回多个值）；
-3. **INOUT**输入输出参数：即表示调用储存过程的参数值，也代表储存过程的返回值。
-
-例子见我的使用。
 
 ## 6. 我的使用 ##
 
->     -- 生成图像
+  >   -- 生成图像
 >     DROP PROCEDURE IF EXISTS `proc_add_image`;
 >     DELIMITER ;;
 >     CREATE DEFINER=`pcs`@`localhost` PROCEDURE `proc_add_image`(IN clro_id_in int, IN insert_time_in VARCHAR(50))
