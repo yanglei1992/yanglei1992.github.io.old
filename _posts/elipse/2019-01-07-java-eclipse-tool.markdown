@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jvm(HotSpot)的垃圾回收器"
+title:  "eclipse常用快捷键"
 date:   2019-01-07 18:30:39 +0800
 categories: java
 tag: eclipse
