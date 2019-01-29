@@ -10,15 +10,15 @@ tag: kafka
 {:toc}
 
 
-## 准备工作： ##
+## 准备工作 ##
 
 1. 安装jdk环境：本次演示安装的是JDK1.8。下载地址：[http://www.oracle.com/technetwork/java/javase/downloads/index.html ](http://www.oracle.com/technetwork/java/javase/downloads/index.html )
 2. 安装kafka的程序包：本次演示安装的是kafka_2.11-2.1.0，下载后解压到文件夹`E:\Programfiles\kafka_2.11-2.1.0`下。下载地址：[http://kafka.apache.org/downloads](http://kafka.apache.org/downloads )
 
 
 > 1. 安装kafka之前需要安装zookeeper服务，我这里使用的kafka_2.11-2.1.0中自带zookeeper，所以安装过程中不需要安装zookeeper了。
+> 
 > 2. kafka_2.11-2.1.0解压后的目录介绍：
->
 >     .\bin目录下存放的是程序运行的脚本，.sh文件是linux下的运行脚本，.bat是windows下运行的脚本。
 >     
 >     .\config目录下存放的是服务运行的配置文件

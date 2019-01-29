@@ -22,7 +22,7 @@ window下安装jekyll可以分为三步：
 
 ## 1、安装Ruby  ##
 
-  我的安装是下载最新版本的`Ruby+Devkit 2.5.3-1 (x64)`[传送门](https:rubyinstaller.org/downloads/)
+  我的安装是下载最新版本的`Ruby+Devkit 2.5.3-1 (x64)`[传送门](https://rubyinstaller.org/downloads/)
 
 ![install_step](/images/2018-12/pic1.png)
 
@@ -38,7 +38,7 @@ window下安装jekyll可以分为三步：
 
 
 ## 2、安装Devkit ##
-我的安装是下载最新版本的`Ruby+Devkit 2.5.3-1 (x64)`[传送门](https:rubyinstaller.org/downloads/)
+我的安装是下载最新版本的`Ruby+Devkit 2.5.3-1 (x64)`[传送门](https://rubyinstaller.org/downloads/)
 
 
 ![install_step](/images/2018-12/pic3.png)
