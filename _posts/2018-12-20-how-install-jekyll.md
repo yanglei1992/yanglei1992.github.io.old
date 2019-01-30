@@ -40,18 +40,18 @@ window下安装jekyll可以分为三步：
 ## 2、安装Devkit ##
 我的安装是下载最新版本的`Ruby+Devkit 2.5.3-1 (x64)`[传送门](https://rubyinstaller.org/downloads/)
 
-
 ![install_step](/images/2018-12/pic3.png)
 
-
-文件下载后直接解压开就行（解压目录随意）
+文件下载后直接解运行就行（安装目录随意）
 
 cmd 进入解压后的目录,执行一下命令
 
 * ruby dk.rb init
 * ruby dk.rb install
 
-安装过程中没有出现error信息就属于正常，由于我这环境已安装完毕，就不截图了
+![install_step](/images/2018-12/pic8.png)
+
+安装过程中没有出现error信息就属于正常
 
 ## 3、安装Jekyll ##
 
@@ -62,6 +62,8 @@ gem -v
 安装jekyll
 
 * gem install jekyll
+
+![install_step](/images/2018-12/pic9.png)
 
 检测是否安装完毕：
 
