@@ -55,3 +55,13 @@ tag: eclipse
 
 # 调试 #
 在本地代码中，将需要调试的部分打上断点，就可以在本地调试远程服务了。
+
+> 如果需要调试修改的代码，请参考：[https://yanglei1992.github.io//2019/01/30/java-jar-class/](https://yanglei1992.github.io//2019/01/30/java-jar-class/)
+
+
+
+# 总结 #
+&nbsp;&nbsp;&nbsp;&nbsp;eclipse远程调试，只是远程服务提供出了一个dug形式的接口，debug的源码依旧是远程服务器代码，
+eclipse 的debug只是方便查询服务器上代码运行时的各种参数值。方便定位问题。
+
+> 远程服务器的代码一定要与本地一致，不然会导致调试不对或者无法连接远程VM等问题

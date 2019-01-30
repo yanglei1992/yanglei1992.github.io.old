@@ -51,40 +51,39 @@ tag: kafka
 
 		.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka01.png)
+
 5.  在`E:\Programfiles\kafka_2.11-2.1.0`目录下启动kafka服务：
 
 		.\bin\windows\kafka-server-start.bat .\config\server.properties
- 
+
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka02.png) 
+
 ## 创建测试数据 ##
 
 1. 创建一个主题
 
 		.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic ylTest
 
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka03.png)
+
 2. 查看主题列表
 
 		.\bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
 
-3. 启动生产者
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka04.png)
+
+3. 启动生产者与发送消息
 
 		.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic ylTest
 
-4. 启动消费者
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka05.png)
+
+4. 启动消费者与接收消息
 
 		.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic ylTest --from-beginning
 
-5. 发送消息与接收消息
-
-
-## 注意事项 ##
-
-- 有些blog使用以下命令启动会报如下错误
-
-		.\bin\windows\kafka-console-consumer.bat --zookeeper localhost:2181 --topic ylTest --from-beginning
-    
-![install_error](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka001.png)
-
-
+    ![kafka_png](/images/2019-01/2019-01-16-mq-kafka-study/mq_kafka06.png)
 
 # 参考资料 #
 
