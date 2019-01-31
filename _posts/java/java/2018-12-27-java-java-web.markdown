@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "jvm(HotSpot)的垃圾回收器"
+title:  "将您重定向的次数过多"
 date:   2018-12-27 21:30:39 +0800
 categories: java
-tag: java
+tag: web
 ---
 
 * content
