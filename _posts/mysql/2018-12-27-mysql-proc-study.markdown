@@ -61,15 +61,58 @@ tag: mysql
 
 ## 2. 调用储存过程 ##
 
+    call proc_name([proc_parameter[,...]])
 
 ## 3. 存储过程体 ##
 
 
+- 存储过程体包含了在存储过程调用时执行的SQL语句集合。
+
+
+- 存储过程体格式：以begin开始，以end格式结束（可以嵌套）
+
+&nbsp;
+
+    BEGIN
+    　　BEGIN
+    　　　　BEGIN
+    　　　　　　statements; 
+    　　　　END
+    　　END
+    END
+
 ## 4. 语句块标签 ##
 
+语法：
+
+    [begin_label:] BEGIN
+    　　[statement_list]
+    END [end_label]
+
+例如：
+
+    label1: BEGIN
+    　　label2: BEGIN
+    　　　　label3: BEGIN
+    　　　　　　statements; 
+    　　　　END label3 ;
+    　　END label2;
+    END label1
+
+作用：
+
+增强代码的可读性
+在某些语句（例如：leave和iterate语句），需要使用标签
 
 ## 5. 储存过程的参数 ##
 
+存储过程可以由0个或者多个参数，用于存储过程的定义，储存过程有以下三种类型的参数：
+
+- IN输入参数：表示调用者向过程传入值（传入值可以是常量或者变量）
+- OUT输出参数：表示存储过程像调用者返回值（可以返回多个值）（传出值只能是变量）
+- INOUT输入输出参数：即表示调用者向存储过程传入值，又表示存储过程向调用者返回值（值只能是变量）
+
+> 确保参数名称不等于表列名称，否则在存储过程中，参数名将被当做表列名称来处理
 
 ## 6. 我的使用 ##
 
@@ -114,8 +157,9 @@ tag: mysql
 >     END
 >     ;;
 >     DELIMITER ;
->     
->     
+
+&nbsp;
+   
 >     -- 生成图像数据，一张图片两个数据
 >     DROP PROCEDURE IF EXISTS `proc_add_image_people_count`;
 >     DELIMITER ;;
@@ -136,7 +180,9 @@ tag: mysql
 >     END
 >     ;;
 >     DELIMITER ;
->     
+
+&nbsp;
+   
 >     -- 生成一节课的图片数据
 >     DROP PROCEDURE IF EXISTS `proc_add_one_course_image`;
 >     DELIMITER ;;
