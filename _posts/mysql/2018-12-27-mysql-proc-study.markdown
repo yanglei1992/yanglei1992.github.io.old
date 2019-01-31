@@ -116,7 +116,8 @@ tag: mysql
 
 ## 6. 我的使用 ##
 
-  >   -- 生成图像
+
+>     -- 生成图像
 >     DROP PROCEDURE IF EXISTS `proc_add_image`;
 >     DELIMITER ;;
 >     CREATE DEFINER=`pcs`@`localhost` PROCEDURE `proc_add_image`(IN clro_id_in int, IN insert_time_in VARCHAR(50))
@@ -125,7 +126,7 @@ tag: mysql
 >     	DECLARE devi_puid_tmp varchar(50);
 >     	DECLARE clde_channel_num_tmp int(11);
 >     	DECLARE image_id_tmp int(11);  -- 生成图片的ID
->     
+
 >     -- 遍历数据结束标志
 >     DECLARE done INT DEFAULT FALSE;
 >     -- 游标
