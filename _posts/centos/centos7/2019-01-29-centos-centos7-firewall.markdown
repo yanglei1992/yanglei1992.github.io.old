@@ -3,7 +3,7 @@ layout: post
 title:  "Centos7防火墙操作"
 date:   2019-01-29 10:21:49 +0800
 categories: centos
-tag: firewall
+tag: centos7
 ---
 
 * content

@@ -3,7 +3,7 @@ layout: post
 title:  "mysql索引"
 date:   2018-12-28 18:21:49 +0800
 categories: mysql
-tag: mysql
+tag: index
 ---
 
 * content

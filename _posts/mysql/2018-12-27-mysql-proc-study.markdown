@@ -3,7 +3,7 @@ layout: post
 title:  "mysql储存过程"
 date:   2018-12-27 19:21:39 +0800
 categories: mysql
-tag: mysql
+tag: proc
 ---
 
 * content
