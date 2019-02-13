@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "springcloud（一）初步了解"
+title:  "Spring Cloud（一）初步了解"
 date:   2019-02-12
 categories: springcloud
 tag: springcloud
@@ -77,7 +77,7 @@ Spring Boot可以离开Spring Cloud独立使用开发项目，但是Spring Cloud
 
 &nbsp;&nbsp;&nbsp;&nbsp;Spring Cloud对于中小型互联网公司来说是一种福音，因为这类公司往往没有实力后者足够的资金投入去开发自己的分布式系统基础设施，使用Spring Cloud一站式解决方案能在从容应对业务发展的同时减少开发成本。同时，随着近几年微服务架构和Docker容器概念的火爆，也会让Spring Cloud在未来越来越“云”化的软件开发风格中立有一席之地，尤其是在目前五花八门的分布式解决方案中提供标准化的、全站式的技术方案，意义可能堪比当前Servlet规范的诞生，有效推进服务端软件系统技术水平的进步。
 
-## 参考资料 ##
+# 参考资料 #
 
 [http://www.ityouknow.com/springcloud/2017/05/01/simple-springcloud.html](http://www.ityouknow.com/springcloud/2017/05/01/simple-springcloud.html)
 
