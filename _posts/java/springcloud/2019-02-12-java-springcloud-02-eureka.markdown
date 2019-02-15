@@ -25,6 +25,7 @@ Spring Cloud封装了Netflix公司开发的Eureka模块来实现服务注册和�
 Eureka由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务器用作服务注册服务器，Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡，并提供服务的故障切换支持。netflix在其生产环境中使用的是另外的客户端，它提供基于流量、资源利用率以及出错状态的加权负载均衡。
 
 Eureka由三个角色组成：
+
 1. Eureka Server
 - 提供服务注册发现
 
@@ -35,6 +36,8 @@ Eureka由三个角色组成：
 3. Service Consumer
 - 服务消费方
 - 从Eureka获取注册服务列表，从而能够消费服务
+
+----------
 
 # 案例实践 #
 
@@ -238,10 +241,14 @@ http://127.0.0.1:10102/userlogin返回结果为：userlogin:用户已验证
 
 **说明客户端已经成功通过feign调用了远程服务login,并且将结果返回到了浏览器。**
 
+----------
+
 # 示例代码 #
 
 [github示例代码](https://github.com/yanglei1992/springcloudstudy/tree/master/workplace-idea/01-demo-eureka-producer-consumer)
 
+
+----------
 
 # 参考资料 #
 
