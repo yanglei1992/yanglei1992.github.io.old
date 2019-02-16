@@ -225,6 +225,20 @@ Eureka由三个角色组成：
 > - @FeignClient(name = "demo-eureka-provider")中的name是远程服务名称，及spring.application.name配置的名称
 > - 此类中的方法和远程服务中contoller中的方法名和参数需保持一致。
 
+5、controller层服务提供（在controller层新建UserController）
+
+	@RestController
+	public class UserController {
+	
+	    @Autowired
+	    private UserFeignClient userFeignClient;
+	
+	    @RequestMapping("userlogin")
+	    public String login() {
+	        return "userlogin:" + userFeignClient.login();
+	    }
+	}
+
 6、启动项目，浏览器访问:`http://localhost:10001`,效果图如下
 
 ![image_png](/images/2019-02/2019-02-12-java-springcloud-02-eureka/TL20190213162146.png)
