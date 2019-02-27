@@ -20,6 +20,8 @@ tag: eclipse
 | 打开搜索对话框 | Ctrl + h |
 | 工作区中的声明 | Ctrl + g |
 | 工作区中的引用 | Ctrl + Shift + g |
+| 查找文件 | Ctrl + Shift + r |
+| 找对应的类时 | Ctrl + Shift + t |
 
 ----------
 
