@@ -22,6 +22,7 @@ tag: eclipse
 | 工作区中的引用 | Ctrl + Shift + g |
 | 查找文件 | Ctrl + Shift + r |
 | 找对应的类时 | Ctrl + Shift + t |
+| 在类中查找方法 | Ctrl + o |
 
 ----------
 
