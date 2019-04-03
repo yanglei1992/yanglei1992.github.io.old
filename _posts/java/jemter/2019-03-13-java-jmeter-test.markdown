@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jemter使用总结"
+title:  "jmeter使用总结"
 date:   2019-03-13
 categories: java
 tag: test
