@@ -78,7 +78,7 @@ HTTP1.1新增了五种请求方法：OPTIONS，PUT，DELETE，TEACE和CONNECT方
 # HTTP响应头信息 #
 
 
-应答头 | 说明
+应答头 | 说明 
 -- | --
 Allow | 服务器支持哪些请求方法（如GET、POST等）。
 Content-Encoding | 文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行gzip压缩，但只有Unix上的Netscape和Windows上的IE 4、IE 5才支持它。因此，Servlet应该通过查看Accept-Encoding头（即request.getHeader("Accept-Encoding")）检查浏览器是否支持gzip，为支持gzip的浏览器返回经gzip压缩的HTML页面，为其他浏览器返回普通页面。
@@ -91,12 +91,81 @@ Location | 表示客户应当到哪里去提取文档。Location通常不是直�
 Refresh | 表示浏览器应该在多少时间之后刷新文档，以秒计。除了刷新当前文档之外，你还可以通过setHeader("Refresh", "5; URL=http://host/path")让浏览器读取指定的页面。 <br/>注意这种功能通常是通过设置HTML页面HEAD区的＜META HTTP-EQUIV="Refresh" CONTENT="5;URL=http://host/path"＞实现，这是因为，自动刷新或重定向对于那些不能使用CGI或Servlet的HTML编写者十分重要。但是，对于Servlet来说，直接设置Refresh头更加方便。 <br>注意Refresh的意义是"N秒之后刷新本页面或访问指定页面"，而不是"每隔N秒刷新本页面或访问指定页面"。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是＜META HTTP-EQUIV="Refresh" ...＞。 <br/>注意Refresh头不属于HTTP 1.1正式规范的一部分，而是一个扩展，但Netscape和IE都支持它。
 Server | 服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置。
 Set-Cookie | 设置和页面关联的Cookie。Servlet不应使用response.setHeader("Set-Cookie", ...)，而是应使用HttpServletResponse提供的专用方法addCookie。参见下文有关Cookie设置的讨论。
-WWW-Authenticate | 客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader("WWW-Authenticate", "BASIC realm=＼"executives＼"")。 
-注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。
+WWW-Authenticate | 客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader("WWW-Authenticate", "BASIC realm="executives")。 <br> 注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。
 
 # HTTP状态码 #
 
-# HTTP内容类型 #
+当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头（server header）用以响应浏览器的请求。
+
+HTTP状态码的英文为HTTP Status Code。
+
+下面是常见的HTTP状态码：
+
+- 200 请求成功
+- 301 资源（网页等）被永久转移到其它URL
+- 404 请求的资源（网页等）不存在
+- 500 内部服务器错误
+
+HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：
+
+## HTTP状态码分类 ##
+
+**HTTP内容类型**
+
+分类 | 分类描述 
+-- | --
+1** | 信息，服务器收到请求，需要请求者继续执行操作
+2** | 成功，操作被成功接收并处理
+3** | 重定向，需要进一步的操作以完成请求
+4** | 客户端错误，请求包含语法错误或无法完成请求
+5** | 服务器错误，服务器在处理请求的过程中发生了错误
+
+## HTTP状态码列表 ##
+
+状态码 | 状态码英文名称 |	中文描述
+-- | -- | --
+100 | Continue |	继续。客户端应继续其请求
+101 | Switching Protocols |	切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议
+200 | OK |	请求成功。一般用于GET与POST请求
+201 | Created | 已创建。成功请求并创建了新的资源
+202 | Accepted | 已接受。已经接受请求，但未处理完成
+203 | Non-Authoritative Information | 非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本
+204 | No Content | 无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档
+205 | Reset Content | 重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域
+206 | Partial Content | 部分内容。服务器成功处理了部分GET请求
+300 | Multiple Choices | 多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择
+301 | Moved Permanently | 永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替
+302 | Found | 临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI
+303 | See Other | 查看其它地址。与301类似。使用GET和POST请求查看
+304 | Not Modified | 未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源
+305 | Use Proxy | 使用代理。所请求的资源必须通过代理访问
+306 | Unused | 已经被废弃的HTTP状态码
+307 | Temporary Redirect | 临时重定向。与302类似。使用GET请求重定向
+400 | Bad Request | 客户端请求的语法错误，服务器无法理解
+401 | Unauthorized | 请求要求用户的身份认证
+402 | Payment Required | 保留，将来使用
+403 | Forbidden | 服务器理解请求客户端的请求，但是拒绝执行此请求
+404 | Not Found | 服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置"您所请求的资源无法找到"的个性页面
+405 | Method Not Allowed | 客户端请求中的方法被禁止
+406 | Not Acceptable | 服务器无法根据客户端请求的内容特性完成请求
+407 | Proxy Authentication Required | 请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权
+408 | Request Time-out | 服务器等待客户端发送的请求时间过长，超时
+409 | Conflict | 服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突
+410 | Gone | 客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置
+411 | Length Required | 服务器无法处理客户端发送的不带Content-Length的请求信息
+412 | Precondition Failed | 客户端请求信息的先决条件错误
+413 | Request Entity Too Large | 由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息
+414 | Request-URI Too Large | 请求的URI过长（URI通常为网址），服务器无法处理
+415 | Unsupported Media Type | 服务器无法处理请求附带的媒体格式
+416 | Requested range not satisfiable | 客户端请求的范围无效
+417 | Expectation Failed | 服务器无法满足Expect的请求头信息
+500 | Internal Server Error | 服务器内部错误，无法完成请求
+501 | Not Implemented | 服务器不支持请求的功能，无法完成请求
+502 | Bad Gateway | 作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应
+503 | Service Unavailable | 由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中
+504 | Gateway Time-out | 充当网关或代理的服务器，未及时从远端服务器获取请求
+505 | HTTP Version not supported | 服务器不支持请求的HTTP协议的版本，无法完成处理
+
 
 # 参考资料 #
 
