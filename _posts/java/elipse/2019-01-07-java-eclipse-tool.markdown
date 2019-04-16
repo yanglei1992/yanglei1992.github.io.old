@@ -45,6 +45,8 @@ tag: eclipse
 | -------- |:-----:|
 | 导入类 | ctrl + shift + o |
 | 格式化选中代码 | ctrl + shift + f |
+| 选中代码全部变成大写 | ctrl + shift + f |
+| 选中代码全部变成小写 | ctrl + shift + f |
 | 撤销 | ctrl + z |
 | 反撤销 | ctrl + y |
 | 删除一行或者选中行代码 | ctrl + d |
