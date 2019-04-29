@@ -1,0 +1,50 @@
+	@ResponseBody
+	@RequestMapping(value = "/web-mng/importCourseManageExcel.do", method = RequestMethod.POST)
+	public Object importCourseManageExcel(MultipartFile excelMultipartFile, HttpServletRequest request, HttpServletResponse response) {
+		File tempFile = null;
+		String tmpFilePath = MngConstants.UPLOAD_FILE_DIR_TMP + UUID.randomUUID() + ".xlsx";
+		try {
+			// 判断临时文件夹是否存在
+			File tmpDir = new File(MngConstants.UPLOAD_FILE_DIR_TMP);
+			if (!tmpDir.isDirectory()) {
+				tmpDir.mkdirs();
+			}
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+			headers.setContentType(MediaType.parseMediaType("multipart/form-data; charset=UTF-8"));
+			MultiValueMap<String, Object> form = new LinkedMultiValueMap<String, Object>();
+			// 新建临时文件
+			tempFile = new File(tmpFilePath);
+			FileUtils.writeByteArrayToFile(tempFile, excelMultipartFile.getBytes());
+			FileSystemResource fileSystemResource = new FileSystemResource(new File(tmpFilePath));
+			form.add("excel_file", fileSystemResource);
+			form.add("area_code", Constants.AREA_CODE_KEDACOM);
+			HttpEntity<MultiValueMap<String, Object>> formEntity = new HttpEntity<MultiValueMap<String, Object>>(form, headers);
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://CMS-HE/course/batchImport?t=0", formEntity, String.class);
+			//保存日志
+			JSONObject jsonObject = new JSONObject(responseEntity.getBody());
+			if (jsonObject.isNull("error")) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("批量导入课表成功");
+				SystemLogDto logDto = new SystemLogDto(new Date(), DatabaseConstants.SYLO_TYPE_USER_OPERATION_LOG, LoginInfoTools.getSessionUserLoginInfo(request).getUserName(), sb.toString());
+				SystemLogUtil.getInstance().sendLogMessage(kafkaTemplate, logDto);
+			} else {
+				StringBuilder sb = new StringBuilder();
+				sb.append("批量导入课表失败");
+				SystemLogDto logDto = new SystemLogDto(new Date(), DatabaseConstants.SYLO_TYPE_USER_OPERATION_LOG, LoginInfoTools.getSessionUserLoginInfo(request).getUserName(), sb.toString());
+				SystemLogUtil.getInstance().sendLogMessage(kafkaTemplate, logDto);
+			}
+			return responseEntity.getBody();
+		} catch (Exception e) {
+			log.error("", e);
+			return Constants.RESPONSE_VO_SYSTEM_ERROR;
+		} finally {
+			if (tempFile != null && tempFile.exists()) {
+				try {
+					tempFile.delete();
+				} catch (Exception e2) {
+					log.error("文件【tmpFilePath】删除异常", e2);
+				}
+			}
+		}
+	}
