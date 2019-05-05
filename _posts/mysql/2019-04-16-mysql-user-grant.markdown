@@ -178,7 +178,7 @@ tag: mysql
 > - INDEX：授予用户可以在表上定义索引的权限。
 > - ALL 或 ALL PRIVILEGES：所有的权限名。
 > 
-> **3. 授予列权限时，\<权限类型\>的值只能指定为 SELECT、INSERT 和 UPDATE，同时权限的后面需要加上列名列表 column-list。**
+> **3. 授予列权限时，<权限类型\>的值只能指定为 SELECT、INSERT 和 UPDATE，同时权限的后面需要加上列名列表 column-list。**
 > 
 > **4. 最有效率的权限是用户权限。**
 > 
@@ -187,7 +187,15 @@ tag: mysql
 > - CREATE USER：表示授予用户可以创建和删除新用户的权限。
 > - SHOW DATABASES：表示授予用户可以使用 SHOW DATABASES 语句查看所有已有的数据库的定义的权限。
 
+# 常用命令使用 #
+	
+	firewall-cmd --zone=public --add-port=3306/tcp --permanent （--permanent永久生效，没有此参数重启后失效）
 
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+	
+	FLUSH PRIVILEGES;
+
+# 参考资料 #
 
 [http://c.biancheng.net/view/2615.html](http://c.biancheng.net/view/2615.html)
 
