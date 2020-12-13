@@ -15,7 +15,7 @@ tag: redis
 
 ### 1、单机Mysql时代
 
-![1607827591432](C:\Users\yangl\AppData\Roaming\Typora\typora-user-images\1607827591432.png)
+![1607827591432](/images/2018-12/2020-12-13-redis/1607827591432.png)
 
 90年代，一个网站的访问量一般不会太大，单个数据库完全够用。随着用户的增多，网站出现以下的问题
 
@@ -27,7 +27,7 @@ tag: redis
 
 网站80%的情况都是在读，每次都要查询数据库的话就十分麻烦！所以说我们希望减轻数据库的压力，我们可以使用缓存来保证效率
 
-![1607828015218](C:\Users\yangl\AppData\Roaming\Typora\typora-user-images\1607828015218.png)
+![1607828015218](/images/2018-12/2020-12-13-redis/1607828015218.png)
 
 优化过程经历了一下几个过程
 
@@ -37,13 +37,13 @@ tag: redis
 
 ### 3、分库分表+水平拆分+Mysql集群
 
-![1607828426436](C:\Users\yangl\AppData\Roaming\Typora\typora-user-images\1607828426436.png)
+![1607828426436](/images/2018-12/2020-12-13-redis/1607828426436.png)
 
 ### 4、如今最近的年代
 
 如今信息量井喷式增长，各种各样的数据出现（用户定位数据，图片数据等），大数据的背景下关系型数据库（RDBMS）无法满足大量的数据要求。Nosql数据库就能轻松的解决这么多问题。
 
-![1607829125923](C:\Users\yangl\AppData\Roaming\Typora\typora-user-images\1607829125923.png)
+![1607829125923](/images/2018-12/2020-12-13-redis/1607829125923.png)
 
 ## 为什么要使用NoSQL?
 
