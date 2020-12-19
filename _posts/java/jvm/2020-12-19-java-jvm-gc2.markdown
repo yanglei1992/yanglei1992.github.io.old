@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "jvm(HotSpot)的垃圾回收器"
-date:   2018-12-27 21:30:39 +0800
+date:   2020-12-19
 categories: java
 tag: jvm
 ---
@@ -20,12 +20,12 @@ tag: jvm
 
 # jvm的7种垃圾回收器 #
 
-## 1.Serial收集器 ##
+## 1.Serial收集器(单线程) ##
 
 Serial收集器时最基本、发展历史最悠久的收集器。是单线程的收集器。它在进行垃圾收集时，必须暂停其他所有的工作线程，直到它收集完成。
 Serial收集器依然是虚拟机运行在Cleent模式下默认新生代收集器，对于运行在Client模式下的虚拟机来说是一个很好的选择。
 
-## 2.ParNew收集器 ##
+## 2.ParNew收集器（Serial+多线程） ##
 
 ParNew收集器其实就是Serial收集器的多线程版本，除了使用多线程进行垃圾收集之外，其余行为包括Serial收集器可用的所有控制参数、收集算法、Stop The Worl、对象可分配规则、回收策略等都与Serial收集器完全一样。
 ParNew收集器是许多运行在Server模式下的虚拟机中首选新生代收集器，其中有一个与性能无关但很重要的原因是除了Serial收集器之外，目前只有arNew它能与CMS收集器配合工作。
